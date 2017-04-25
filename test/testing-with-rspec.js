@@ -58,10 +58,10 @@ describe('rspec', function() {
       language: 'ruby',
       code: 'a = 1',
       fixture: [
-       'describe "test" do',
-       '  it("test1") { a.idontexist() }',
-       '  it("test2") { expect(true) }',
-       'end',
+        'describe "test" do',
+        '  it("test1") { a.idontexist() }',
+        '  it("test2") { expect(true) }',
+        'end',
       ].join('\n'),
       testFramework: 'rspec'
     }, function(buffer) {
