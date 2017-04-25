@@ -140,7 +140,7 @@ USER codewarrior
 # Sample Database
 # http://www.postgresqltutorial.com/postgresql-sample-database/#
 
-ADD sample_data /runner/sample_data
+ADD docker/sample_data /runner/sample_data
 RUN /usr/lib/postgresql/9.6/bin/pg_ctl -w start \
     && createdb -U codewarrior spec \
     && createdb -U codewarrior dvdrental \
@@ -160,15 +160,17 @@ RUN apt-get update && apt-get -y install mlocate bc
 # allow codewarrior to install gems
 RUN chown codewarrior /usr/local/bundle
 
+RUN ln -s /home/codewarrior /workspace
+
 WORKDIR /runner
 COPY package.json /runner/package.json
 RUN npm install --only=prod
+
+COPY docker/frameworks /runner/frameworks
+COPY lib /runner/lib
 # TODO: separate test and remove this
+COPY test /runner/test
 RUN npm install --only=dev
-
-RUN ln -s /home/codewarrior /workspace
-
-COPY . /runner
 
 # Run the test suite to make sure this thing works
 USER codewarrior
