@@ -175,7 +175,7 @@ USER codewarrior
 # Set environment variables
 ENV USER=codewarrior HOME=/home/codewarrior
 
-RUN mocha -t 5000
+RUN NODE_ENV=test mocha -t 5000
 #RUN mocha -t 5000 test/runners/ruby_spec.js
 #RUN mocha -t 5000 test/runners/sql_spec.js
 #RUN mocha -t 5000 test/runners/shell_spec.js
