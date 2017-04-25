@@ -1,7 +1,7 @@
 {
   "name": "@kazk/codewars-ruby-runner",
   "description": "Temporary Codewars Ruby runner",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": "kazk/codewars-ruby-runner",
   "main": "lib/index.js",
   "license": "AGPL-3.0",

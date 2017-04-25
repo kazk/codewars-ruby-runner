@@ -177,12 +177,13 @@ USER codewarrior
 # Set environment variables
 ENV USER=codewarrior HOME=/home/codewarrior
 
-RUN npm run test
+# Use global mocha for now. local one exits after first test for some reason.
+RUN NODE_ENV=test mocha -t 5s
 #RUN mocha -t 5000 test/runners/ruby_spec.js
 #RUN mocha -t 5000 test/runners/sql_spec.js
 #RUN mocha -t 5000 test/runners/shell_spec.js
 #RUN sh /runner/lib/cleanup.sh
-RUN ["/bin/bash", "-c", "find /home/codewarrior -mindepth 1 -maxdepth 1 -exec rm -rf '{}';"]
+RUN find /home/codewarrior -mindepth 1 -maxdepth 1 -exec rm -rf {} \;
 
 #timeout is a fallback in case an error with node
 #prevents it from exiting properly

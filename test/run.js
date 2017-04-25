@@ -4,9 +4,11 @@ const expect = require('chai').expect;
 const run = require('../');
 
 describe('ruby runner run', function() {
-  // runner.assertCodeExamples('ruby');
   it('should handle basic code evaluation', function(done) {
-    run({language: 'ruby', code: 'puts 42'}, function(buffer) {
+    run({
+      language: 'ruby',
+      code: 'puts 42'
+    }, function(buffer) {
       expect(buffer.stdout).to.equal('42\n');
       done();
     });
@@ -15,10 +17,10 @@ describe('ruby runner run', function() {
   it('should support githubRepo downloading', function(done) {
     run({
       language: 'ruby',
-      code: `
-                  require "sample"
-                  puts Sample.new.message
-              `,
+      code: [
+        'require "sample"',
+        'puts Sample.new.message'
+      ].join('\n'),
       githubRepo: 'jhoffner/test'
     }, function(buffer) {
       console.log(buffer.stdout);
@@ -43,10 +45,10 @@ describe('ruby runner run', function() {
     run({
       language: 'ruby',
       code: 'puts `ls`',
-      setup: `
-                  # @config: github-repo jhoffner/test
-                  # @config: bash-file start.sh
-              `,
+      setup: [
+        '# @config: github-repo jhoffner/test',
+        '# @config: bash-file start.sh',
+      ].join('\n'),
     }, function(buffer) {
       expect(buffer.stdout).to.contain('test.txt\n');
       done();
