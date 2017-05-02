@@ -8,7 +8,7 @@
   "scripts": {
     "eslint": "eslint '**/*.js'",
     "pretest": "docker build -t kazk/codewars-ruby-runner .",
-    "test": "mocha -t 15s"
+    "test": "mocha -t 20s"
   },
   "dependencies": {
     "@kazk/codewars-runner": "kazk/codewars-runner#0.6.0-rc2"

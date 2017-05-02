@@ -98,7 +98,25 @@ describe('services', function() {
         "r.set('a', 'b')"
       ].join('\n'),
       fixture: "Test.assert_equals(r.get('a'), 'b')",
-      // services: ['redis'],
+      testFramework: 'cw-2'
+    }).then(function(buffer) {
+      expect(buffer.stdout).to.contain('<PASSED::>Test Passed: Value == \"b\"');
+      showBuffer(buffer);
+      done();
+    });
+  });
+
+  it('can run redis using opts.services', function(done) {
+    run({
+      format: 'json',
+      language: 'ruby',
+      solution: [
+        "require 'redis'",
+        'r = Redis.new',
+        "r.set('a', 'b')"
+      ].join('\n'),
+      fixture: "Test.assert_equals(r.get('a'), 'b')",
+      services: ['redis'],
       testFramework: 'cw-2'
     }).then(function(buffer) {
       expect(buffer.stdout).to.contain('<PASSED::>Test Passed: Value == \"b\"');
