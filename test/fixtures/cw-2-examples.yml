@@ -98,6 +98,7 @@ reference:
 
   answer: |-
     # add the values "codewars" to the websites array
+    websites = []
     websites << 'codewars'
 
   fixture: |-

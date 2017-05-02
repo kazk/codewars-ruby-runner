@@ -1,5 +1,6 @@
 Temporary package to try multi-package approach.
 
 ```
-npm run make
+nmp install --only=dev
+npm run test
 ```
